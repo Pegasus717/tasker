@@ -1,18 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 40px;
+      gap: 30px;
+    }
+
+    .addtasksec {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .entertask {
+      color: white;
+      border: 1.5px solid rgb(154, 153, 153);
+      padding: 8px 10px;
+      border-radius: 10px;
+      outline: none;
+      background: transparent;
+      width: 250px;
+    }
+
+    .entertask:focus {
+      box-shadow: 0px 0px 5px white;
+    }
+
+    .addbtn {
+      height: 35px;
+      width: 35px;
+      background: url('./addbtn.jpg');
+      background-size: cover;
+      border: 2px solid yellowgreen;
+      border-radius: 50%;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .addbtn:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+
+    .addbtn:active {
+      transform: scale(0.9);
+    }
+
+    /* container for each task and delete button */
+    .taskwrapper {
+      display: flex;
+      align-items: center;
+      gap: 15px; /* space between card and delete button */
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .taskcard {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 250px;
+      max-width: 550px;
+      background-color: rgba(24, 24, 24, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.3s ease;
+    }
+
+    .show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .completed {
+      opacity: 0.3;
+    }
+
+    .togglebtn {
+      height: 24px;
+      width: 24px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .togglebtn.active {
+      background-image: url("./done.png");
+    }
+
+    .deletebtn {
+      height: 25px;
+      width: 25px;
+      background: url('./delete.png') center/cover no-repeat;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+      flex-shrink: 0;
+    }
+
+    .deletebtn:hover {
+      transform: scale(1.2);
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: scale(0.7);
+      transition: all 0.3s ease;
+    }
+  </style>
 </head>
-<body>
-    
+
+<body class="min-h-screen bg-[radial-gradient(circle_at_center,_theme('colors.zinc.700'),_black)]">
+  <div class="addtasksec">
+    <input class="entertask" id="entertaskid" type="text" placeholder="Enter your Task">
+    <button class="addbtn" id="addbtnid" title="Add Task"></button>
+  </div>
+
+  <!-- Tasks appear here -->
+  <div id="taskContainer"></div>
+
+  <script src="./script.js"></script>
 </body>
 </html>
